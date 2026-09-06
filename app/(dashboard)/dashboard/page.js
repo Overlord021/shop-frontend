@@ -1,9 +1,10 @@
 import StatsClient from "@/components/dashboard/StatsClient";
 import { getServerTranslations } from "@/lib/i18n/locale";
+import { getRouteTitle } from "@/lib/titles";
 
 export async function generateMetadata() {
-  const { t } = await getServerTranslations();
-  return { title: t.dashboardHome.metaTitle };
+  const title = await getRouteTitle("dashboard");
+  return { title };
 }
 
 export default async function DashboardPage() {

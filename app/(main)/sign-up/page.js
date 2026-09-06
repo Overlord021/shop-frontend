@@ -1,6 +1,10 @@
 import SignUpClient from "./SignUpClient";
+import { getRouteTitle } from "@/lib/titles";
 
-export const metadata = { title: "ثبت‌نام" };
+export async function generateMetadata() {
+  const title = await getRouteTitle("signUp");
+  return { title };
+}
 
 export default function SignUpPage() {
   return <SignUpClient />;

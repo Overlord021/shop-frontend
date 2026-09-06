@@ -1,16 +1,22 @@
 import { CartProvider } from "@/lib/cart-context";
 import { LanguageProvider } from "@/lib/i18n/LanguageProvider";
-import { getLocale } from "@/lib/i18n/locale";
+import { getLocale, getServerTranslations } from "@/lib/i18n/locale";
 import Script from "next/script";
 import "./globals.css";
 
-export const metadata = {
-  title: { default: "فروشگاه", template: "%s | فروشگاه" },
-  description: "بهترین محصولات با بهترین قیمت",
-  icons: {
-    icon: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛍️</text></svg>",
-  },
-};
+export async function generateMetadata() {
+  const { t } = await getServerTranslations();
+  return {
+    title: {
+      default: t.layout.siteTitleDefault,
+      template: t.layout.siteTitleTemplate,
+    },
+    description: t.layout.siteDescription,
+    icons: {
+      icon: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛍️</text></svg>",
+    },
+  };
+}
 
 const SET_LOCALE_SCRIPT = `
 (function () {
@@ -28,8 +34,8 @@ export default async function RootLayout({ children }) {
   const dir = locale === "en" ? "ltr" : "rtl";
 
   return (
-    <html lang={locale} dir={dir} data-scroll-behavior="smooth" suppressHydrationWarning>
-      <body suppressHydrationWarning>
+    <html lang={locale} dir={dir} data-scroll-behavior="smooth">
+      <body className="bg-gray-50 text-gray-900" suppressHydrationWarning>
         <Script id="set-locale-dir" strategy="beforeInteractive">
           {SET_LOCALE_SCRIPT}
         </Script>
@@ -42,3 +48,4 @@ export default async function RootLayout({ children }) {
     </html>
   );
 }
+

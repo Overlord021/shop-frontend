@@ -1,10 +1,14 @@
 import { Suspense } from 'react';
 import ProductsFilter from '@/components/product/ProductsFilter';
 import { getLocale } from '@/lib/i18n/locale';
+import { getRouteTitle } from '@/lib/titles';
 
 const BACKEND_API_URL = process.env.BACKEND_API_URL || 'http://localhost:4000';
 
-export const metadata = { title: 'فروشگاه' };
+export async function generateMetadata() {
+  const title = await getRouteTitle('products');
+  return { title };
+}
 
 export default async function ProductsPage({ searchParams }) {
   const params = await searchParams;

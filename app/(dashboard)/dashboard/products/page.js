@@ -2,10 +2,11 @@ import ProductCreateForm from "@/components/product/ProductCreateForm";
 import ProductList from "@/components/product/ProductList";
 import { getCategories, getBrands } from "@/lib/dal";
 import { getServerTranslations } from "@/lib/i18n/locale";
+import { getRouteTitle } from "@/lib/titles";
 
 export async function generateMetadata() {
-  const { t } = await getServerTranslations();
-  return { title: t.productsPage.metaTitle };
+  const title = await getRouteTitle("dashboardProducts");
+  return { title };
 }
 
 export default async function ProductsPage() {

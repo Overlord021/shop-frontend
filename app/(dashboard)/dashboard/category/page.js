@@ -1,10 +1,11 @@
 import CategoryCreateForm from "@/components/category/CategoryCreateForm";
 import CategoryList from "@/components/category/CategoryList";
 import { getServerTranslations } from "@/lib/i18n/locale";
+import { getRouteTitle } from "@/lib/titles";
 
 export async function generateMetadata() {
-  const { t } = await getServerTranslations();
-  return { title: t.categoryPage.metaTitle };
+  const title = await getRouteTitle("dashboardCategory");
+  return { title };
 }
 
 export default async function CategoryPage() {

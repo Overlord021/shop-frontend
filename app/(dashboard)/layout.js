@@ -5,10 +5,11 @@ import { DashboardSidebar } from "@/app/layout/DashboardSidebar";
 import { DashboardHeader } from "@/app/layout/DashboardHeader";
 import { requireAuth } from "@/lib/dal";
 import { getServerTranslations } from "@/lib/i18n/locale";
+import { getRouteTitle } from "@/lib/titles";
 
 export async function generateMetadata() {
-  const { t } = await getServerTranslations();
-  return { title: t.layout.dashboardTitle };
+  const title = await getRouteTitle("dashboardLayout");
+  return { title };
 }
 
 export default async function DashboardLayout({ children }) {

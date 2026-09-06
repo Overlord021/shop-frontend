@@ -2,6 +2,8 @@ import { cache } from 'react';
 import { notFound } from 'next/navigation';
 
 import ProductDetailView from '@/components/product/ProductDetailView';
+import { productName } from '@/lib/i18n/displayName';
+import { getRouteTitle } from '@/lib/titles';
 
 const BACKEND_API_URL =
   process.env.BACKEND_API_URL ||
@@ -50,10 +52,12 @@ export async function generateMetadata({
   const product =
     await getProduct(id);
 
+  const notFoundTitle = await getRouteTitle('productNotFound');
+
   return {
     title:
-      product?.name ||
-      'محصول یافت نشد',
+      product ? productName(product) :
+      notFoundTitle,
   };
 }
 

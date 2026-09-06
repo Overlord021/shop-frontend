@@ -1,13 +1,15 @@
 import HomeClient from "./HomeClient";
 import { getLocale } from "@/lib/i18n/locale";
+import { getRouteTitle } from "@/lib/titles";
 
 const BACKEND_API_URL =
   process.env.BACKEND_API_URL ||
   "http://localhost:4000";
 
-export const metadata = {
-  title: "صفحه اصلی",
-};
+export async function generateMetadata() {
+  const title = await getRouteTitle("home");
+  return { title };
+}
 
 async function fetchData(endpoint, tag) {
   try {

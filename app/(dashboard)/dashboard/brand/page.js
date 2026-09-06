@@ -1,10 +1,11 @@
 import BrandCreateForm from "@/components/brand/BrandCreateForm";
 import BrandList from "@/components/brand/BrandList";
 import { getServerTranslations } from "@/lib/i18n/locale";
+import { getRouteTitle } from "@/lib/titles";
 
 export async function generateMetadata() {
-  const { t } = await getServerTranslations();
-  return { title: t.brandPage.metaTitle };
+  const title = await getRouteTitle("dashboardBrand");
+  return { title };
 }
 
 export default async function BrandPage() {

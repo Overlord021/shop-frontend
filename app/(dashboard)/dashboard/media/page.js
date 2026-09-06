@@ -1,10 +1,11 @@
 import MediaCreateForm from "@/components/media/MediaCreateForm";
 import MediaList from "@/components/media/MediaList";
 import { getServerTranslations } from "@/lib/i18n/locale";
+import { getRouteTitle } from "@/lib/titles";
 
 export async function generateMetadata() {
-  const { t } = await getServerTranslations();
-  return { title: t.mediaPage.metaTitle };
+  const title = await getRouteTitle("dashboardMedia");
+  return { title };
 }
 
 export default async function MediaPage({ searchParams }) {
