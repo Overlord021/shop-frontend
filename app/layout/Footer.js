@@ -136,12 +136,12 @@ export function Footer() {
 
         {/* Trust badges row */}
         <div className="border-t border-white/10 mt-6 pt-6 flex flex-wrap items-center justify-between gap-4">
-          <div className="flex gap-2.5 sm:gap-3 flex-wrap">
+          <div className="flex flex-wrap gap-2.5 sm:gap-3">
             {t.footer.badges.map((badge) => (
               <div
                 key={badge}
                 title={badge}
-                className="w-10 h-10 rounded-xl bg-white/10 border border-white/15 flex items-center justify-center text-blue-200 text-[8px] sm:text-[9px] text-center leading-tight p-1"
+                className="w-12 h-12 sm:w-14 sm:h-14 shrink-0 rounded-xl bg-white/10 border border-white/15 flex items-center justify-center text-blue-200 text-[8px] sm:text-[9px] text-center leading-tight p-1 overflow-hidden"
               >
                 {badge}
               </div>
