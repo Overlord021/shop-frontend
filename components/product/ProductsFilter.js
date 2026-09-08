@@ -22,9 +22,9 @@ function ProductCard({ product }) {
   return (
     <Link
       href={`/products/${product._id}`}
-      className="cursor-pointer group block rounded-xl sm:rounded-2xl border border-gray-100 bg-white overflow-hidden hover:shadow-md transition"
+      className="cursor-pointer group flex flex-col h-full rounded-xl sm:rounded-2xl border border-gray-100 bg-white overflow-hidden hover:shadow-md transition"
     >
-      <div className="aspect-square bg-gray-50 relative p-2 sm:p-3">
+      <div className="aspect-square bg-gray-50 relative p-2 sm:p-3 shrink-0">
         {product.sale > 0 && (
           <span className="absolute top-1.5 end-1.5 sm:top-2 sm:end-2 z-10 bg-red-500 text-white text-[10px] sm:text-xs font-bold px-1.5 sm:px-2 py-0.5 rounded-lg">
             {product.sale}{t.common.percentSign}
@@ -47,22 +47,29 @@ function ProductCard({ product }) {
           </div>
         )}
       </div>
-      <div className="p-2.5 sm:p-3 space-y-0.5">
-        <p className="text-xs sm:text-sm font-medium text-gray-800 line-clamp-2">{name}</p>
-        {finalPrice ? (
-          <>
-            <p className="text-[11px] sm:text-xs text-gray-400 line-through">
-              {formatPrice(basePrice, locale)}
-            </p>
-            <p className="text-xs sm:text-sm font-bold text-gray-900">
-              {formatPrice(finalPrice, locale)}
-            </p>
-          </>
-        ) : (
-          <p className="text-xs sm:text-sm font-bold text-gray-900">
-            {formatPrice(basePrice, locale)}
-          </p>
-        )}
+      <div className="p-2.5 sm:p-3 flex-1 flex flex-col justify-between gap-2">
+        <p className="text-xs sm:text-sm font-medium text-gray-800 line-clamp-2 h-8 sm:h-10">{name}</p>
+        <div className="mt-auto flex flex-col justify-end min-h-10 sm:min-h-[46px]">
+          {finalPrice ? (
+            <>
+              <p className="text-[11px] sm:text-xs text-gray-400 line-through">
+                {formatPrice(basePrice, locale)}
+              </p>
+              <p className="text-xs sm:text-sm font-bold text-gray-900">
+                {formatPrice(finalPrice, locale)}
+              </p>
+            </>
+          ) : (
+            <>
+              <p className="text-[11px] sm:text-xs text-transparent select-none" aria-hidden="true">
+                &nbsp;
+              </p>
+              <p className="text-xs sm:text-sm font-bold text-gray-900">
+                {formatPrice(basePrice, locale)}
+              </p>
+            </>
+          )}
+        </div>
       </div>
     </Link>
   );

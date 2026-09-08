@@ -23,6 +23,9 @@ export function DashboardHeader() {
   return (
     <header className="h-14 sm:h-16 bg-white border-b border-gray-200 flex items-center justify-between px-3 sm:px-6 shrink-0" dir={dir}>
       <div className="flex items-center gap-2 sm:gap-3">
+        <h1 className="text-xs sm:text-sm font-semibold text-gray-500">{t.dashboardHeader.panelName}</h1>
+      </div>
+      <div className="flex items-center gap-2 sm:gap-3">
         <button
           onClick={() => setOpen(true)}
           className="cursor-pointer lg:hidden p-1.5 sm:p-2 rounded-lg hover:bg-gray-100 text-gray-600 transition"
@@ -30,9 +33,6 @@ export function DashboardHeader() {
         >
           <Menu className="w-5 h-5" />
         </button>
-        <h1 className="text-xs sm:text-sm font-semibold text-gray-500">{t.dashboardHeader.panelName}</h1>
-      </div>
-      <div className="flex items-center gap-2 sm:gap-3">
         {session && (
           <span className="hidden xs:inline text-xs sm:text-sm text-gray-600">{session.email || t.dashboardHeader.adminFallback}</span>
         )}

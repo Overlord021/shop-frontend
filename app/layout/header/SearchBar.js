@@ -22,7 +22,7 @@ export function SearchBar() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder={t.header.searchPlaceholder}
-          className="w-full rounded-xl border border-gray-200 bg-gray-50 py-2.5 sm:py-3 ps-12 pe-4 text-xs sm:text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all"
+          className="w-full rounded-xl border border-gray-200 bg-gray-50 py-2.5 sm:py-3 ps-4 pe-12 sm:pe-14 text-xs sm:text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all"
           dir={dir}
         />
         <button type="submit" className="cursor-pointer absolute end-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-red-600 transition-colors">

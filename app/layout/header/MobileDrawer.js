@@ -4,10 +4,11 @@ import { X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
+import { localizedName } from "@/lib/i18n/displayName";
 
 export function MobileDrawer({ open, onClose, isLoggedIn, onSignOut, categories }) {
   const ref = useRef(null);
-  const { t, dir } = useLanguage();
+  const { t, dir, locale } = useLanguage();
 
   useEffect(() => {
     if (!open) return;
@@ -24,7 +25,7 @@ export function MobileDrawer({ open, onClose, isLoggedIn, onSignOut, categories 
       <div className="absolute inset-0 bg-black/50" onClick={onClose} />
       <div
         ref={ref}
-        className="absolute start-0 top-0 h-full w-[85vw] xs:w-72 sm:w-80 bg-white shadow-2xl flex flex-col"
+        className="absolute end-0 top-0 h-full w-[85vw] xs:w-72 sm:w-80 bg-white shadow-2xl flex flex-col"
         dir={dir}
       >
         <div className="flex items-center justify-between px-4 py-4 border-b border-gray-100">
@@ -35,10 +36,10 @@ export function MobileDrawer({ open, onClose, isLoggedIn, onSignOut, categories 
           <Link href="/" onClick={onClose} className="cursor-pointer flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-50 text-gray-700 font-medium transition">{t.mobileDrawer.home}</Link>
           <Link href="/products" onClick={onClose} className="cursor-pointer flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-50 text-gray-700 font-medium transition">{t.mobileDrawer.allProducts}</Link>
           {categories?.map((cat) => (
-            <Link key={cat._id} href={`/products?category=${cat.en_name}`} onClick={onClose} className="cursor-pointer flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-50 text-gray-600 text-sm transition">{cat.name}</Link>
+            <Link key={cat._id} href={`/products?category=${cat.en_name}`} onClick={onClose} className="cursor-pointer flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-50 text-gray-600 text-sm transition">{localizedName(cat, locale)}</Link>
           ))}
           {isLoggedIn && (
-            <Link href="/dashboard" onClick={onClose} className="cursor-pointer flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-50 text-gray-700 font-medium transition">{t.mobileDrawer.dashboard}</Link>
+            <Link href="/dashboard" onClick={onClose} className="cursor-pointer flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-50 text-gray-700 font-medium transition">{t.header.backToDashboard}</Link>
           )}
         </nav>
         <div className="p-4 border-t border-gray-100 space-y-2">

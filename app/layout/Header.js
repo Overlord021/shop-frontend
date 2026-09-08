@@ -51,7 +51,7 @@ export function Header() {
               <SearchBar />
             </div>
 
-            <div className="flex items-center gap-1 sm:gap-2 me-auto md:me-0">
+            <div className="flex items-center gap-1 sm:gap-2 ms-auto md:me-0">
               <button
                 onClick={() => setCartOpen(true)}
                 className="cursor-pointer relative p-1.5 sm:p-2 text-gray-600 hover:text-red-600 hover:bg-gray-50 rounded-full transition"
@@ -67,7 +67,7 @@ export function Header() {
               {isLoggedIn ? (
                 <>
                   <Link href="/dashboard" className="cursor-pointer hidden md:flex items-center gap-1.5 text-sm font-medium text-gray-700 hover:text-red-600 px-3 py-2 rounded-lg hover:bg-gray-50 transition">
-                    <LayoutGrid />{t.header.dashboard}
+                    <LayoutGrid />{t.header.backToDashboard}
                   </Link>
                   <button onClick={handleSignOut} className="cursor-pointer hidden md:block text-sm font-medium text-gray-500 hover:text-red-600 px-3 py-2 rounded-lg hover:bg-gray-50 transition">{t.header.signOut}</button>
                 </>
@@ -109,7 +109,7 @@ export function Header() {
                 <>
                   <div className="w-px h-5 bg-gray-200 mx-1 me-auto" />
                   <Link href="/dashboard" className="cursor-pointer flex items-center gap-1.5 px-3 py-1.5 text-sm text-gray-600 hover:text-red-600 hover:bg-gray-50 rounded-md transition whitespace-nowrap">
-                   <LayoutGrid />{t.header.manageStore}
+                   <LayoutGrid />{t.header.backToDashboard}
                   </Link>
                 </>
               )}
